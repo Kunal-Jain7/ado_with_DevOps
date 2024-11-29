@@ -1,0 +1,26 @@
+trigger:
+- main
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+jobs:
+- job: 'Job1'
+  steps:
+  - script: echo From Job1
+    displayName: 'Job1 script'
+  
+- job: 'Job2'
+  dependsOn: Job1
+  steps: 
+  - script: |
+      echo From Job2
+      echo multi-line script
+    displayName: 'Multi-line Job2'
+
+- job: 'Job3'
+  dependsOn: Job2
+  steps:
+  - script: echo From Job3
+    displayName: 'Job3 running script'
+  
